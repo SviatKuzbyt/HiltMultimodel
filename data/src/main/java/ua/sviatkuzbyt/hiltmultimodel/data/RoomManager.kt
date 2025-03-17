@@ -5,7 +5,7 @@ import javax.inject.Singleton
 
 @Singleton
 class RoomManager @Inject constructor() {
-    val users = listOf(
+    val users = mutableListOf(
         UserData(1, "Alice", 25),
         UserData(2, "Bob", 30),
         UserData(3, "Charlie", 28),
