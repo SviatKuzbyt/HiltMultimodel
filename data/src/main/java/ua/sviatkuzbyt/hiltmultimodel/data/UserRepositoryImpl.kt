@@ -12,11 +12,19 @@ class UserRepositoryImpl @Inject constructor (
 
     override fun getUsers(): List<UserDataDomain> {
         return roomManager.users.map {
-            mapUser(it)
+            mapUserToDomain(it)
         }
     }
 
-    private fun mapUser(user: UserData): UserDataDomain{
+    override fun addUser(user: UserDataDomain) {
+        roomManager.users.add(mapUserToData(user))
+    }
+
+    private fun mapUserToDomain(user: UserData): UserDataDomain{
         return UserDataDomain(user.id, user.name, user.age)
+    }
+
+    private fun mapUserToData(user: UserDataDomain): UserData{
+        return UserData(user.id, user.name, user.age)
     }
 }
